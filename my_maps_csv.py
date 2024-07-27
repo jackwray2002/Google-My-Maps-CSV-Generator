@@ -28,13 +28,6 @@ class _Write_Location_CSV(ModuleType):
         token = None # Token initialized as None
         place_list = [] # List stores values to be written to .csv file
 
-        # Initialize csv file
-        csv_file = open(FILE_NAME, "a", newline='')
-        csv_writer = writer(csv_file)
-        csv_writer.writerow(["Name", "Address", "Latitude", "Longitude",
-        "Sunday Hours", "Monday Hours", "Tuesday Hours", "Wednesday Hours",
-        "Thursday Hours", "Friday hours", "Saturday Hours"])
-
         while True:
             sleep(2) # Cooldown to not overwhelm servers
 
@@ -84,6 +77,13 @@ class _Write_Location_CSV(ModuleType):
 
         # Remove .csv file of same name if it already exists in working directory
         if FILE_NAME in listdir(getcwd()): remove(join(getcwd(), FILE_NAME))
+
+        # Initialize csv file
+        csv_file = open(FILE_NAME, "a", newline='')
+        csv_writer = writer(csv_file)
+        csv_writer.writerow(["Name", "Address", "Latitude", "Longitude",
+        "Sunday Hours", "Monday Hours", "Tuesday Hours", "Wednesday Hours",
+        "Thursday Hours", "Friday hours", "Saturday Hours"])
 
         # Write data to csv file
         csv_writer.writerows(place_list)
